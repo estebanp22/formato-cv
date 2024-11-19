@@ -2,6 +2,7 @@ function guardarPersona() {
     var form = document.getElementById("formularioPersona");
     var formData = new FormData(form);
 
+
     // Verificar los datos que se están enviando
     for (var pair of formData.entries()) {
         console.log(pair[0]+ ': ' + pair[1]);

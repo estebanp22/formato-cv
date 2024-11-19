@@ -74,21 +74,21 @@
             <div class="row">
                 <div class="form-group">
                     <label for="primer-apellido">PRIMER APELLIDO</label>
-                    <input type="text" class="form-control" id="primer-apellido" required>
+                    <input type="text" class="form-control" id="primer-apellido" name="primerApellido" required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group">
                     <label for="segundo-apellido">SEGUNDO APELLIDO (O DE CASADA)</label>
-                    <input type="text" class="form-control" id="segundo-apellido">
+                    <input type="text" class="form-control" id="segundo-apellido" name="segundoApellido">
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group">
                     <label for="nombres">NOMBRES</label>
-                    <input type="text" class="form-control" id="nombres" required>
+                    <input type="text" class="form-control" id="nombres" name="nombres" required>
                 </div>
             </div>
 
@@ -97,25 +97,25 @@
                     <label for="documento-identificacion">DOCUMENTO DE IDENTIFICACIÓN</label>
 
                     <div class="radio">
-                        <label><input type="radio" id="documento-cc" value="cc" name="documento-identificacion">Cédula de Ciudadanía</label>
+                        <label><input type="radio" id="documento-cc" value="cc" name="tipoDocumento">Cédula de Ciudadanía</label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" id="documento-ce" value="ce" name="documento-identificacion">Cédula de Extranjería</label>
+                        <label><input type="radio" id="documento-ce" value="ce" name="tipoDocumento">Cédula de Extranjería</label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" id="documento-pas" value="pas" name="documento-identificacion">Pasaporte</label>
+                        <label><input type="radio" id="documento-pas" value="pas" name="tipoDocumento">Pasaporte</label>
                     </div>
 
                     <div class="form-group">
                         <label for="numero-documento">NÚMERO DE DOCUMENTO</label>
-                        <input type="text" class="form-control" id="numero-documento" required>
+                        <input type="text" class="form-control" id="numero-documento" name="numeroDocumento" required>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group">
-                    <label for="genero">SEXO</label>
+                    <label for="genero">genero</label>
                     <div class="radio">
                         <label><input type="radio" id="genero-f" value="f" name="genero">Femenino</label>
                     </div>
@@ -161,7 +161,7 @@
             <div class="row">
                 <div class="form-group">
                     <label for="pais-nacimiento">PAÍS DE NACIMIENTO</label>
-                    <select class="form-control" name="pais-nacimiento" id="pais-nacimiento">
+                    <select class="form-control" name="paisNacimiento" id="pais-nacimiento">
                         <option value="" disabled selected>Selecciona tu país</option>
                     </select>
                 </div>
@@ -170,7 +170,7 @@
             <div class="row">
                 <div class="form-group">
                     <label for="departamento-nacimiento">DEPARTAMENTO DE NACIMIENTO</label>
-                    <select class="form-control" name="departamento-nacimiento" id="departamento-nacimiento">
+                    <select class="form-control" name="departamentoNacimiento" id="departamento-nacimiento">
                         <option value="" disabled selected>Selecciona tu departamento</option>
                         <option value="amazonas">Amazonas</option>
                         <option value="antioquia">Antioquia</option>
@@ -211,7 +211,7 @@
             <div class="row">
                 <div class="form-group">
                     <label for="ciudad-nacimiento">CIUDAD DE NACIMIENTO</label>
-                    <select class="form-control" name="ciudad-nacimiento" id="ciudad-nacimiento">
+                    <select class="form-control" name="municipioNacimiento" id="ciudad-nacimiento">
                         <option value="" disabled selected>Selecciona tu ciudad</option>
                         <option value="leticia">Leticia (Amazonas)</option>
                         <option value="medellin">Medellín (Antioquia)</option>
