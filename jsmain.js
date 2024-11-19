@@ -1,6 +1,7 @@
 (function () {
     paises = Array();
     municipios = Array();
+    departamentos = Array();
 })();
 
 function cargaInicial() {
@@ -11,10 +12,9 @@ function cargaInicial() {
         .then(data => obtenerPaises(data));
 
     const url2 = "https://raw.githubusercontent.com/marcovega/colombia-json/master/colombia.min.json";
-
     fetch(url2)
         .then(response => response.json())
-        .then(data => obtenerMunicpios(data));
+        .then(data => obtenerDepartamentosMunicpios(data));
 
 
     llenarDias();
@@ -23,14 +23,10 @@ function cargaInicial() {
 
 }
 
-function obtenerMunicpios(data) {
-    //console.log("mostrando municpios");
-    //console.log(data);
-}
-
 function obtenerPaises(data) {
     //console.log(data);
     //console.log("tamano :" + data.length);
+    console.log("Mostrando paises")
     let index = 0;
     data.forEach(element => {
         let pais = {
@@ -69,6 +65,44 @@ function obtenerPaises(data) {
 
 
 }
+
+function obtenerDepartamentosMunicpios(data) {
+    //Extraer departamentos y municipios
+    //console.log("Mostrando departamentos y municipios")
+    data.forEach(departamento => {
+        departamentos.push(departamento.departamento);
+        municipios[departamento.departamento] = departamento.ciudades;
+    });
+
+    configurarDropdown("departamento-nacimiento", "municipioNacimiento");
+    configurarDropdown("departamento-correspondencia", "municipio-correspondencia");
+
+}
+function configurarDropdown(idDepartamento, idMunicipio){
+    //Dropdown de departamentos
+    let selectDepartamento = document.getElementById(idDepartamento);
+    let selectMunicipio = document.getElementById(idMunicipio);
+
+    departamentos.forEach(depto =>{
+        let option = new Option(depto, depto);
+        selectDepartamento.appendChild(option);
+    });
+     //Municipios segun el departamento seleccionado
+    selectDepartamento.addEventListener("change", function(){
+        let selectDpto = this.value;
+        //Quitar municipios anteriores 
+        selectMunicipio.innerHTML = '<option value="" disabled selected>Selecciona tu ciudad</option>';
+
+        //Añadir los municipios del departamento seleccionado 
+        municipios[selectDpto].forEach(muni => {
+            let option = new Option(muni, muni);
+            selectMunicipio.appendChild(option);
+        });
+
+        selectMunicipio.disabled = false;
+    });
+}
+
 function llenarDias() {
     let selectDia = document.getElementById("dia-nacimiento");
     for (let i = 1; i <= 31; i++) {

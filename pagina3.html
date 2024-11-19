@@ -42,7 +42,7 @@
                 </div>
                 <a href="pagina1.html">DATOS PERSONALES</a>
                 <a href="pagina2.html">FORMACION ACADEMICA</a>
-                <a href="pagina3.html">EXPERENCIA LABORAL</a>
+                <a class="nav-link active" href="pagina3.html">EXPERENCIA LABORAL</a>
                 <a href="pagina4.html">TIEMPO TOTAL DE EXPERIENCIA</a>
             </div>
         </nav>
@@ -66,14 +66,14 @@
         <div class="row">
             <div class="form-group">
                 <label for="empresa">EMPRESA O ENTIDAD</label>
-                <input type="text" class="form-control" id="empresa">
+                <input type="text" class="form-control" id="empresa" name="empresa-actual">
 
                 <div class="radio">
-                    <label><input type="radio" id="tipo-empresa" value="publica" name="tipo-empresa">Publica</label>
+                    <label><input type="radio" id="tipo-empresa-actual" value="publica" name="tipo-empresa-actual">Publica</label>
                 </div>
 
                 <div class="radio">
-                    <label><input type="radio" id="tipo-empresa" value="privada" name="tipo-empresa">Privada</label>
+                    <label><input type="radio" id="tipo-empresa-actual" value="privada" name="tipo-empresa-actual">Privada</label>
                 </div>
             </div>
         </div>
@@ -209,25 +209,18 @@
         <div class="row">
             <div class="form-group">
                 <label for="correo-empresa">CORREO ELECTRONICO ENTIDAD</label>
-                <input type="text" class="form-control" id="primer-apellido">
+                <input type="text" class="form-control" id="email-empresa" name="email-empresa">
             </div>
         </div>
 
         <div class="row">
             <div class="form-group">
                 <label for="telefono-empresa">TELEFONO</label>
-                <input type="text" class="form-control" id="telefono-empresa">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group">
-                <label for="telefono-empresa">TELEFONO</label>
-                <input type="text" class="form-control" id="telefono-empresa">
+                <input type="text" class="form-control" id="telefono-empresa" name="telefono-empresa">
             </div>
         </div>
         <div class="row">
-            <label for="fecha-ingreso">FECHA INGRESO</label>
+            <label for="fecha-ingreso">FECHA DE INGRESO</label>
         </div>
         <div class="row">
             <div class="form-group">
@@ -361,9 +354,8 @@
         </div>
 
         <div class="row">
-            <label for="fecha-ingreso">FECHA INGRESO</label>
+            <label for="fecha-ingreso">FECHA DE RETIRO</label>
         </div>
-
         <div class="row">
             <div class="form-group">
                 <label for="sel2">DIA</label>
@@ -497,27 +489,21 @@
         <div class="row">
             <div class="form-group">
                 <label for="usr">Cargo o contrato</label>
-                <input type="text" class="form-control" id="cargo_contrato">
+                <input type="text" class="form-control" id="cargo_contrato" name="cargo_contrato">
             </div>
         </div>
         <div class="row">
             <div class="form-group">
                 <label for="usr">Dependencia</label>
-                <input type="text" class="form-control" id="dependencia">
+                <input type="text" class="form-control" id="dependencia" name="dependencia">
             </div>
         </div>
         <div class="row">
             <div class="form-group">
                 <label for="usr">Direccion</label>
-                <input type="text" class="form-control" id="direccion">
+                <input type="text" class="form-control" id="direccion" name="direccion">
             </div>
         </div>
-
-
-
-
-
-
         <div class="row">
             <label for="empleo-ANT">EMPLEO O CONTRATO ANTERIOR</label>
         </div>
@@ -525,14 +511,14 @@
         <div class="row">
             <div class="form-group">
                 <label for="empresa">EMPRESA O ENTIDAD</label>
-                <input type="text" class="form-control" id="empresa">
+                <input type="text" class="form-control" id="empresa-anterior" name="empresa-anterior">
 
                 <div class="radio">
-                    <label><input type="radio" id="tipo-empresa" value="publica" name="tipo-empresa">Publica</label>
+                    <label><input type="radio" id="tipo-empresa-anterior" value="publica" name="tipo-empresa-anterior">Publica</label>
                 </div>
 
                 <div class="radio">
-                    <label><input type="radio" id="tipo-empresa" value="privada" name="tipo-empresa">Privada</label>
+                    <label><input type="radio" id="tipo-empresa-anterior" value="privada" name="tipo-empresa-anterior">Privada</label>
                 </div>
             </div>
         </div>
@@ -540,7 +526,7 @@
         <div class="row">
             <div class="form-group">
                 <label for="pais-empresa">PAIS</label>
-                <select class="form-control" name="pais_empresa" id="pais_empresa">
+                <select class="form-control" name="pais_empresa-anterior" id="pais_empresa-anterior">
                     <option value="" disabled selected>Selecciona</option>
                     <option value="co">Colombia</option>
                     <option value="ar">Argentina</option>
@@ -560,7 +546,7 @@
         <div class="row">
             <div class="form-group">
                 <label for="departamento-empresa">DEPARTAMENTO</label>
-                <select class="form-control" name="departamento_empresa" id="departamento_empresa">
+                <select class="form-control" name="departamento_empresa-anterior" id="departamento_empresa-anterior">
                     <option value="" disabled selected>Selecciona tu departamento</option>
                     <option value="amazonas">Amazonas</option>
                     <option value="antioquia">Antioquia</option>
@@ -601,7 +587,7 @@
         <div class="row">
             <div class="form-group">
                 <label for="municipio-empresa">MUNICIPIO</label>
-                <select class="form-control" name="ciudad-empresa" id="ciudad-empresa">
+                <select class="form-control" name="ciudad-empresa-anterior" id="ciudad-empresa-anterior">
                     <option value="" disabled selected>Selecciona tu ciudad</option>
                     <option value="leticia">Leticia (Amazonas)</option>
                     <option value="medellin">Medellín (Antioquia)</option>
@@ -668,21 +654,14 @@
         <div class="row">
             <div class="form-group">
                 <label for="correo-empresa">CORREO ELECTRONICO ENTIDAD</label>
-                <input type="text" class="form-control" id="primer-apellido">
+                <input type="text" class="form-control" id="email-empresa-anterior" name="email-empresa-anterior">
             </div>
         </div>
 
         <div class="row">
             <div class="form-group">
                 <label for="telefono-empresa">TELEFONO</label>
-                <input type="text" class="form-control" id="telefono-empresa">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group">
-                <label for="telefono-empresa">TELEFONO</label>
-                <input type="text" class="form-control" id="telefono-empresa">
+                <input type="text" class="form-control" id="telefono-empresa-anterior" name="telefono-empresa-anterior">
             </div>
         </div>
         <div class="row">
@@ -820,7 +799,7 @@
         </div>
 
         <div class="row">
-            <label for="fecha-ingreso">FECHA INGRESO</label>
+            <label for="fecha-ingreso">FECHA DE RETIRO</label>
         </div>
 
         <div class="row">
@@ -956,19 +935,19 @@
         <div class="row">
             <div class="form-group">
                 <label for="usr">Cargo o contrato</label>
-                <input type="text" class="form-control" id="cargo_contrato">
+                <input type="text" class="form-control" id="cargo_contrato-anterior" name="cargo_contrato-anterior">
             </div>
         </div>
         <div class="row">
             <div class="form-group">
                 <label for="usr">Dependencia</label>
-                <input type="text" class="form-control" id="dependencia">
+                <input type="text" class="form-control" id="dependencia-anterior" name="dependencia-anterior">
             </div>
         </div>
         <div class="row">
             <div class="form-group">
                 <label for="usr">Direccion</label>
-                <input type="text" class="form-control" id="direccion">
+                <input type="text" class="form-control" id="direccion-anterior" name="direccion-anterior">
             </div>
         </div>
 </body>
