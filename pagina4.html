@@ -11,6 +11,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="jsmain4.js"></script>
 </head>
 
 <body>
@@ -84,7 +85,6 @@
 
                             <td>
                                 <select class="form-control" name="anios-servidor-publico" id="anios-servidor-publico">
-                                    <option value="" disabled selected>Selecciona un número</option>
                                     <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -103,7 +103,6 @@
 
                             <td>
                                 <select class="form-control" name="meses-servidor-publico" id="meses-servidor-publico">
-                                    <option value="" disabled selected>Selecciona un número</option>
                                     <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -116,7 +115,6 @@
                                     <option value="9">9</option>
                                     <option value="10">10</option>
                                     <option value="11">11</option>
-                                    <option value="12">12</option>
                                 </select>
                             </td>
                         </tr>
@@ -129,7 +127,6 @@
 
                             <td>
                                 <select class="form-control" name="anios-sector-privado" id="anios-sector-privado">
-                                    <option value="" disabled selected>Selecciona un número</option>
                                     <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -148,7 +145,6 @@
 
                             <td>
                                 <select class="form-control" name="meses-sector-privado" id="meses-sector-privado">
-                                    <option value="" disabled selected>Selecciona un número</option>
                                     <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -161,7 +157,6 @@
                                     <option value="9">9</option>
                                     <option value="10">10</option>
                                     <option value="11">11</option>
-                                    <option value="12">12</option>
                                 </select>
                             </td>
                         </tr>
@@ -174,7 +169,6 @@
 
                             <td>
                                 <select class="form-control" name="anios-independiente" id="anios-independiente">
-                                    <option value="" disabled selected>Selecciona un número</option>
                                     <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -193,7 +187,6 @@
 
                             <td>
                                 <select class="form-control" name="meses-independiente" id="meses-independiente">
-                                    <option value="" disabled selected>Selecciona un número</option>
                                     <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -206,7 +199,6 @@
                                     <option value="9">9</option>
                                     <option value="10">10</option>
                                     <option value="11">11</option>
-                                    <option value="12">12</option>
                                 </select>
                             </td>
                         </tr>
@@ -218,11 +210,11 @@
                             </td>
 
                             <td>
-
+                                <p id="anios-totales"></p>
                             </td>
 
                             <td>
-
+                                <p id="meses-totales"></p>
                             </td>
                         </tr>
 
@@ -231,6 +223,12 @@
                 </table>
             </div>
         </div>
+
+        <div class="row">
+            <button type="button" onclick="calcularTotal()">Calcular Total Experiencia</button>
+
+        </div>
+
 
         <div class=" row">
             <div class="col-sm-12">
@@ -422,7 +420,7 @@
         </div>
 
         <div class="row">
-            <p>CERTIFICO QUE LA INFORMACIÓN AQUÍ SUMINISTRADA HA SIDO CONSTATADA FRENTE A LOS 
+            <p>CERTIFICO QUE LA INFORMACIÓN AQUÍ SUMINISTRADA HA SIDO CONSTATADA FRENTE A LOS
                 DOCUMENTOS QUE HAN SIDO PRESENTADOS COMO SOPORTE</p>
         </div>
 
