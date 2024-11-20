@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="Css/estilo.css">
+    <link rel="stylesheet" href="../Css/estilo.css">
 
 </head>
 
@@ -21,7 +21,7 @@
 
         <div class="row">
             <div class="col-sm-4">
-                <img src="Imagenes\Escudo.png">
+                <img src="../../Imagenes/Escudo.png">
             </div>
             <div class="col-sm-4">
                 <h2>Formato Unico</h2>
@@ -41,12 +41,12 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="../index.html">HOJA DE VIDA</a>
+                    <a class="navbar-brand" href="../../index.php">HOJA DE VIDA</a>
                 </div>
-                <a href="pagina1.html">DATOS PERSONALES</a>
-                <a href="pagina2.html">FORMACION ACADEMICA</a>
-                <a class="nav-link active" href="pagina3.html">EXPERENCIA LABORAL</a>
-                <a href="pagina4.html">TIEMPO TOTAL DE EXPERIENCIA</a>
+                <a href="pagina1.php">DATOS PERSONALES</a>
+                <a href="pagina2.php">FORMACION ACADEMICA</a>
+                <a class="nav-link active" href="pagina3.php">EXPERENCIA LABORAL</a>
+                <a href="pagina4.php">TIEMPO TOTAL DE EXPERIENCIA</a>
             </div>
         </nav>
 

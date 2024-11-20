@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+if (isset($_SESSION["idPersona"])) {
+    $idPersona = $_SESSION["idPersona"];
+    echo "El ID de la persona es: " . $idPersona;
+} else {
+    echo "No hay ningún ID registrado.";
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -13,7 +24,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
     <script type="text/javascript" src="main1.js"></script>
-    <link rel="stylesheet" href="Css/estilo.css">
+    <link rel="stylesheet" href="../Css/estilo.css">
 
 
 </head>
@@ -24,7 +35,7 @@
 
         <div class="row">
             <div class="col-sm-4">
-                <img src="../Imagenes/Escudo.png">
+                <img src="../../Imagenes/Escudo.png">
             </div>
             <div class="col-sm-4">
                 <h2>Formato Unico</h2>
@@ -57,12 +68,12 @@
           <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="../index.html">HOJA DE VIDA</a>
+                    <a class="navbar-brand" href="../../index.php">HOJA DE VIDA</a>
                 </div>
-                <a class="nav-link active" href="pagina1.html">DATOS PERSONALES</a>
-                <a href="pagina2.html">FORMACION ACADEMICA</a>
-                <a href="pagina3.html">EXPERENCIA LABORAL</a>
-                <a href="pagina4.html">TIEMPO TOTAL DE EXPERIENCIA</a>
+                <a class="nav-link active" href="pagina1.php">DATOS PERSONALES</a>
+                <a href="pagina2.php">FORMACION ACADEMICA</a>
+                <a href="pagina3.php">EXPERENCIA LABORAL</a>
+                <a href="pagina4.php">TIEMPO TOTAL DE EXPERIENCIA</a>
             </div>
         </nav>
         <form id="formularioPersona">
@@ -192,9 +203,11 @@
 
 
         <div class="row">
-            <button class="btn btn-primary" type="button" onclick="guardarPersona()">Guardar Avance</button>
+            <button type="button" onclick="guardarPersona()">Guardar Informacion Personal</button>
+
         </div>
 
+<form id="formulariolibreta">
 
         <div class="row">
             <div class="form-group">
@@ -215,6 +228,14 @@
             </div>
 
         </div>
+
+</form>
+        <div class="row">
+            <button type="button" onclick="guardarLibretaMilitar()">Guardar Libreta Militar</button>
+
+        </div>
+
+<form id="formularioCorrespondencia">
 
 
         <div class="row">
@@ -267,9 +288,9 @@
                 <input type="text" class="form-control" id="email" name = "email">
             </div>
         </div>
-
-        <br>
-
+        </form>
+        <div class="row">
+            <button type="button" onclick="">Guardar Direccion de Correspondencia</button>
 
         </div>
 

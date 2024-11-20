@@ -24,9 +24,16 @@
             </div>            
         </div>
 
+        <form method="POST" action="Src/Php/guardarSesion.php">
+            <label for="idPersona">ID de la Persona:</label>
+            <input type="text" id="idPersona" name="idPersona" required>
+            <button type="submit">Enviar</button>
+        </form>
+
+
         <div class=" row">
             <div class="col-sm-12">
-                <a href="Src/pagina1.html">
+                <a href="Src/Pages/pagina1.php">
                 <button type="button" class="btn btn-primary btn-block">DILIGENCIAR HOJA DE VIDA</button>
             </a>
             </div>

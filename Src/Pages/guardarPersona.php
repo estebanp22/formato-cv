@@ -6,7 +6,7 @@ ini_set('log_errors', 1);
 ini_set('error_log', '/ruta/a/tu/log/php_errors.log');
 ini_set('display_errors', 0);
 
-include("BD.php");
+include("../Php/BD.php");
 
 // Inicializar respuesta
 $response = [];
