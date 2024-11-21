@@ -23,8 +23,8 @@ if (isset($_SESSION["idPersona"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-    <script type="text/javascript" src="main1.js"></script>
-    <link rel="stylesheet" href="../Css/estilo.css">
+    <script type="text/javascript" src="Js/pagina1Script.js"></script>
+    <link rel="stylesheet" href="../Css/estiloGeneral.css">
 
 
 </head>
@@ -51,19 +51,6 @@ if (isset($_SESSION["idPersona"])) {
             </div>
         </div>
 
-        <!-- <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-              <div class="navbar-header">
-                <a class="navbar-brand" href="#">HOJA DE VIDA</a>
-              </div>
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="index.html">INICIO</a></li>
-                <li><a href="pagina1.html">DATOS PERSONALES</a></li>
-                <li><a href="#">Page 2</a></li>
-                <li><a href="#">Page 3</a></li>
-              </ul>
-            </div>
-          </nav> -->
 
           <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -207,93 +194,92 @@ if (isset($_SESSION["idPersona"])) {
 
         </div>
 
-<form id="formulariolibreta">
+        <form id="formulariolibreta">
 
-        <div class="row">
-            <div class="form-group">
-                <label for="lib-militar">LIBRETA MILITAR</label>
+            <div class="row">
+                <div class="form-group">
+                    <label for="lib-militar">LIBRETA MILITAR</label>
 
-                <div class="radio">
-                    <label><input type="radio" id="clase-libreta" value="1" name="clase-libreta">Primera clase</label>
+                    <div class="radio">
+                        <label><input type="radio" id="clase-libreta" value="1" name="clase-libreta">Primera clase</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" id="clase-libreta" value="2" name="clase-libreta">Segunda clase</label>
+                    </div>
+
+                    <label for="num-libreta">NUMERO</label>
+                    <input type="text" class="form-control" id="numero-libreta" name="numero-libreta">
+
+                    <label for="num-libreta">DISTRITO MILITAR</label>
+                    <input type="text" class="form-control" id="dm-libreta" name="dm-libreta">
                 </div>
-                <div class="radio">
-                    <label><input type="radio" id="clase-libreta" value="2" name="clase-libreta">Segunda clase</label>
-                </div>
 
-                <label for="num-libreta">NUMERO</label>
-                <input type="text" class="form-control" id="numero-libreta">
-
-                <label for="num-libreta">DISTRITO MILITAR</label>
-                <input type="text" class="form-control" id="dm-libreta">
             </div>
 
-        </div>
-
-</form>
+        </form>
         <div class="row">
             <button type="button" onclick="guardarLibretaMilitar()">Guardar Libreta Militar</button>
 
         </div>
 
-<form id="formularioCorrespondencia">
+        <form id="formularioCorrespondencia">
 
-
-        <div class="row">
-            <div class="form-group">
-                <label for="direccion-correspondencia">DIRECCIÓN DE CORRESPONDENCIA</label>
-                <input type="text" class="form-control" id="direccion-correspondencia">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group">
-                <label for="pais-correspondencia">PAIS DE CORRESPONDENCIA</label>
-                <select class="form-control" name="pais-correspondencia" id="pais-correspondencia">
-                    <option value="" disabled selected>Selecciona tu país</option> 
-                </select>
-
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group">
-                <label for="departamento-correspondencia">DEPARTAMENTO DE CORRESPONDENCIA</label>
-                <select class="form-control" name="departamento-correspondencia" id="departamento-correspondencia">
-                    <option value="" disabled selected>Selecciona tu departamento</option>
-                </select>
-
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group">
-                <label for="ciudad-correspondencia">CIUDAD DE CORRESPONDENCIA</label>
-                <select class="form-control" name="ciudad-correspondencia" id="municipio-correspondencia">
-                    <option value="" disabled selected>Selecciona tu ciudad</option>
-                </select>
+            <div class="row">
+                <div class="form-group">
+                    <label for="direccion-correspondencia">DIRECCIÓN DE CORRESPONDENCIA</label>
+                    <input type="text" class="form-control" id="direccion-correspondencia" name="direccion-correspondencia">
+                </div>
             </div>
 
-        </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="pais-correspondencia">PAIS DE CORRESPONDENCIA</label>
+                    <select class="form-control" name="pais-correspondencia" id="pais-correspondencia">
+                        <option value="" disabled selected>Selecciona tu país</option>
+                    </select>
 
-        <div class="row">
-            <div class="form-group">
-                <label for="telefono">TELEFONO</label>
-                <input type="text" class="form-control" id="telefono" name = "telefono">
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="form-group">
-                <label for="email">EMAIL</label>
-                <input type="text" class="form-control" id="email" name = "email">
+            <div class="row">
+                <div class="form-group">
+                    <label for="departamento-correspondencia">DEPARTAMENTO DE CORRESPONDENCIA</label>
+                    <select class="form-control" name="departamento-correspondencia" id="departamento-correspondencia">
+                        <option value="" disabled selected>Selecciona tu departamento</option>
+                    </select>
+
+                </div>
             </div>
-        </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="ciudad-correspondencia">CIUDAD DE CORRESPONDENCIA</label>
+                    <select class="form-control" name="municipio-correspondencia" id="municipio-correspondencia">
+                        <option value="" disabled selected>Selecciona tu ciudad</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="telefono">TELEFONO</label>
+                    <input type="text" class="form-control" id="telefono" name = "telefono">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="email">EMAIL</label>
+                    <input type="text" class="form-control" id="email" name = "email">
+                </div>
+            </div>
         </form>
         <div class="row">
-            <button type="button" onclick="">Guardar Direccion de Correspondencia</button>
+            <button type="button" onclick="guardarDireccionCorrespondencia()"> Guardar Direccion de Correspondencia </button>
 
         </div>
-
+    </div>
 
 </body>
 

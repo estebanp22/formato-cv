@@ -2,7 +2,7 @@
 // Configurar encabezado JSON
 header('Content-Type: application/json');
 
-// Iniciar sesión
+// Iniciar sesión para obtener el idPersona
 session_start();
 
 // Inicializar respuesta
@@ -16,18 +16,13 @@ if (!isset($_SESSION["idPersona"])) {
     exit;
 }
 
-// Obtener idPersona desde la sesión
+// Obtener el idPersona desde la sesión
 $idPersona = $_SESSION["idPersona"];
 
-// Configuración de errores
-ini_set('log_errors', 1);
-ini_set('error_log', '/ruta/a/tu/log/php_errors.log');
-ini_set('display_errors', 0);
-
-// Incluir el archivo de conexión a la base de datos
+// Incluir archivo de conexión a la base de datos
 include("../Php/BD.php");
 
-// Verificar conexión a la base de datos
+// Verificar conexión
 if (!$conn) {
     $response['status'] = 'error';
     $response['message'] = 'No se pudo conectar a la base de datos.';
@@ -39,7 +34,7 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Validar campos requeridos
-    $requiredFields = ['clase-libreta', 'numero-libreta', 'dm-libreta'];
+    $requiredFields = ['idioma', 'nivel-habla-idioma', 'nivel-lee-idioma', 'nivel-escribe-idioma'];
     $missingFields = [];
 
     foreach ($requiredFields as $field) {
@@ -56,20 +51,21 @@ try {
     }
 
     // Preparar consulta SQL
-    $sql = "INSERT INTO libreta_militar (
-                idPersona, clase, numero, distritoMilitar
+    $sql = "INSERT INTO idioma (
+                idPersona, idioma, habla, lee, escribe
             ) VALUES (
-                :idPersona, :clase, :numero, :distritoMilitar
+                :idPersona, :idioma, :habla, :lee, :escribe
             )";
 
     $stmt = $conn->prepare($sql);
 
-    // Ejecutar consulta
+    // Ejecutar consulta con los datos del formulario
     $stmt->execute([
-        ':idPersona' => $idPersona,  // idPersona ahora se obtiene de la sesión
-        ':clase' => $_POST['clase-libreta'],
-        ':numero' => $_POST['numero-libreta'],
-        ':distritoMilitar' => $_POST['dm-libreta']
+        ':idPersona' => $idPersona,
+        ':idioma' => $_POST['idioma'],
+        ':habla' => $_POST['nivel-habla-idioma'],
+        ':lee' => $_POST['nivel-lee-idioma'],
+        ':escribe' => $_POST['nivel-escribe-idioma']
     ]);
 
     // Respuesta exitosa

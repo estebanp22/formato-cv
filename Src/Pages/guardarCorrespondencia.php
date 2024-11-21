@@ -1,11 +1,8 @@
 <?php
-// Configurar encabezado JSON
 header('Content-Type: application/json');
 
-// Iniciar sesión
 session_start();
 
-// Inicializar respuesta
 $response = [];
 
 // Verificar que el idPersona esté en la sesión
@@ -19,15 +16,12 @@ if (!isset($_SESSION["idPersona"])) {
 // Obtener idPersona desde la sesión
 $idPersona = $_SESSION["idPersona"];
 
-// Configuración de errores
 ini_set('log_errors', 1);
 ini_set('error_log', '/ruta/a/tu/log/php_errors.log');
 ini_set('display_errors', 0);
 
-// Incluir el archivo de conexión a la base de datos
 include("../Php/BD.php");
 
-// Verificar conexión a la base de datos
 if (!$conn) {
     $response['status'] = 'error';
     $response['message'] = 'No se pudo conectar a la base de datos.';
@@ -39,7 +33,10 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Validar campos requeridos
-    $requiredFields = ['clase-libreta', 'numero-libreta', 'dm-libreta'];
+    $requiredFields = [
+        'direccion-correspondencia', 'pais-correspondencia', 'departamento-correspondencia',
+        'municipio-correspondencia', 'telefono', 'email'
+    ];
     $missingFields = [];
 
     foreach ($requiredFields as $field) {
@@ -55,28 +52,28 @@ try {
         exit;
     }
 
-    // Preparar consulta SQL
-    $sql = "INSERT INTO libreta_militar (
-                idPersona, clase, numero, distritoMilitar
+    $sql = "INSERT INTO direccion_correspondencia (
+                idPersona, direccion, pais, departamento, municipio, telefono, email
             ) VALUES (
-                :idPersona, :clase, :numero, :distritoMilitar
+                :idPersona, :direccion, :pais, :departamento, :municipio, :telefono, :email
             )";
 
     $stmt = $conn->prepare($sql);
 
-    // Ejecutar consulta
     $stmt->execute([
-        ':idPersona' => $idPersona,  // idPersona ahora se obtiene de la sesión
-        ':clase' => $_POST['clase-libreta'],
-        ':numero' => $_POST['numero-libreta'],
-        ':distritoMilitar' => $_POST['dm-libreta']
+        ':idPersona' => $idPersona,  // idPersona obtenido de la sesión
+        ':direccion' => $_POST['direccion-correspondencia'],
+        ':pais' => $_POST['pais-correspondencia'],
+        ':departamento' => $_POST['departamento-correspondencia'],
+        ':municipio' => $_POST['municipio-correspondencia'],
+        ':telefono' => $_POST['telefono'],
+        ':email' => $_POST['email']
     ]);
 
     // Respuesta exitosa
     $response['status'] = 'success';
-    $response['message'] = 'Datos guardados exitosamente.';
+    $response['message'] = 'Datos de dirección guardados exitosamente.';
 } catch (PDOException $e) {
-    // Manejar errores de la base de datos
     $response['status'] = 'error';
     $response['message'] = 'Error al guardar los datos: ' . $e->getMessage();
 }

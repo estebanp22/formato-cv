@@ -2,7 +2,7 @@
 // Configurar encabezado JSON
 header('Content-Type: application/json');
 
-// Iniciar sesión
+// Iniciar sesión para obtener el idPersona
 session_start();
 
 // Inicializar respuesta
@@ -16,18 +16,13 @@ if (!isset($_SESSION["idPersona"])) {
     exit;
 }
 
-// Obtener idPersona desde la sesión
+// Obtener el idPersona desde la sesión
 $idPersona = $_SESSION["idPersona"];
 
-// Configuración de errores
-ini_set('log_errors', 1);
-ini_set('error_log', '/ruta/a/tu/log/php_errors.log');
-ini_set('display_errors', 0);
-
-// Incluir el archivo de conexión a la base de datos
+// Incluir archivo de conexión a la base de datos
 include("../Php/BD.php");
 
-// Verificar conexión a la base de datos
+// Verificar conexión
 if (!$conn) {
     $response['status'] = 'error';
     $response['message'] = 'No se pudo conectar a la base de datos.';
@@ -39,7 +34,7 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Validar campos requeridos
-    $requiredFields = ['clase-libreta', 'numero-libreta', 'dm-libreta'];
+    $requiredFields = ['nivel_educativo', 'semestres-aprobados', 'graduado', 'carrera', 'fecha-grado-superior', 'num_tarjeta_profesional'];
     $missingFields = [];
 
     foreach ($requiredFields as $field) {
@@ -55,21 +50,27 @@ try {
         exit;
     }
 
+    // Obtener el valor de 'graduado' (Si/No)
+    $graduado = ($_POST['graduado'] == 'si') ? 1 : 0;
+
     // Preparar consulta SQL
-    $sql = "INSERT INTO libreta_militar (
-                idPersona, clase, numero, distritoMilitar
+    $sql = "INSERT INTO educacion_superior (
+                idPersona, modalidad, semestresAprovados, graduado, nombreTitulo, fechaTerminacion, numeroTarjetaProfesional
             ) VALUES (
-                :idPersona, :clase, :numero, :distritoMilitar
+                :idPersona, :modalidad, :semestresAprovados, :graduado, :nombreTitulo, :fechaTerminacion, :numeroTarjetaProfesional
             )";
 
     $stmt = $conn->prepare($sql);
 
-    // Ejecutar consulta
+    // Ejecutar consulta con los datos del formulario
     $stmt->execute([
-        ':idPersona' => $idPersona,  // idPersona ahora se obtiene de la sesión
-        ':clase' => $_POST['clase-libreta'],
-        ':numero' => $_POST['numero-libreta'],
-        ':distritoMilitar' => $_POST['dm-libreta']
+        ':idPersona' => $idPersona,
+        ':modalidad' => $_POST['nivel_educativo'],
+        ':semestresAprovados' => $_POST['semestres-aprobados'],
+        ':graduado' => $graduado,
+        ':nombreTitulo' => $_POST['carrera'],
+        ':fechaTerminacion' => $_POST['fecha-grado-superior'],
+        ':numeroTarjetaProfesional' => $_POST['num_tarjeta_profesional']
     ]);
 
     // Respuesta exitosa

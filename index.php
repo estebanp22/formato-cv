@@ -7,6 +7,8 @@
     <title>Hoja de Vida</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="Src/Css/estiloIndex.css">
+
 </head>
 
 <body>
@@ -19,23 +21,32 @@
                 <h2>Formato Único</h2>
                 <h1>HOJA DE VIDA</h1>
                 <h2>Persona Natural</h2>
-                <h3>(Leyes 190 de 1995, 489 y 443 de 1998)</h3>
             </div>
         </div>
 
+<!-- Continuacion -->
         <div class="form-container mt-4">
-            <p>Si ya cuentas con un avance en tu hoja de vida, ingresa tu número de documento:</p>
+            <p>Si ya cuentas con un avance en tu hoja de vida, ingresa aqui tu número de documento:</p>
             <form method="POST" action="Src/Php/guardarSesion.php">
                 <div class="mb-3">
-                    <label for="idPersona" class="form-label">ID de la Persona:</label>
+                    <label for="idPersona" class="form-label">Numero de documento:</label>
                     <input type="text" class="form-control" id="idPersona" name="idPersona" required>
                 </div>
-                <button type="submit" class="btn btn-success btn-block">Enviar</button>
+                <button type="submit" class="btn btn-success btn-block">Continuar</button>
             </form>
         </div>
 
-        <div class="text-center mt-4">
-            <a href="Src/Pages/pagina1.php" class="btn btn-primary btn-block">DILIGENCIAR HOJA DE VIDA</a>
+
+<!-- Ingreso por primera vez -->
+    <div class="form-container mt-4">
+            <p>Si vas a diligenciar por primera vez tu hoja de vida, ingresa aqui tu número de documento:</p>
+            <form method="POST" action="Src/Php/guardarSesion.php">
+                <div class="mb-3">
+                    <label for="idPersona" class="form-label">Numero de documento:</label>
+                    <input type="text" class="form-control" id="idPersona" name="idPersona">
+                </div>
+                <button href="Src/Pages/pagina1.php" type="submit" class="btn btn-success btn-block">Iniciar</button>
+            </form>
         </div>
 
         <div class="container">

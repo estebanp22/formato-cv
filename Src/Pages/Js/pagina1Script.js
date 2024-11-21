@@ -161,3 +161,31 @@ function guardarLibretaMilitar() {
         });
 }
 
+function guardarDireccionCorrespondencia() {
+    var form = document.getElementById("formularioCorrespondencia");
+    var formData = new FormData(form);
+
+    // Verificar los datos que se están enviando
+    for (var pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+    }
+
+    // Enviar los datos al servidor
+    fetch('guardarCorrespondencia.php', {
+        method: 'POST',
+        body: formData,
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                alert(data.message);  // Datos guardados correctamente
+            } else {
+                alert('Error: ' + data.message);  // Mostrar mensaje de error
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Hubo un problema con la solicitud');
+        });
+}
+
