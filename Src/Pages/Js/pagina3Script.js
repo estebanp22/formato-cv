@@ -198,14 +198,7 @@ function formatFecha(fecha) {
     const mes = String(fechaObj.getMonth() + 1).padStart(2, '0'); // Los meses comienzan en 0
     const año = fechaObj.getFullYear();
     return `${dia}/${mes}/${año}`;
-}
-
-
-
-
-
-
-
+}   
 
 (function () {
     paises = Array();
@@ -254,13 +247,13 @@ function obtenerPaises(data) {
     //console.log(paisesF);
 
     //adicionar valores al select
-    let select = document.getElementById("pais_empresa");
-    let select1 = document.getElementById("pais_empresa_anterior")
+    let select1 = document.getElementById("pais_empresa");
+    let select2 = document.getElementById("pais_empresa-anterior");
     paisesF.forEach(e => {
-        option = new Option(e.name, e.id);
         option1 = new Option(e.name, e.id);
-        select.appendChild(option);
+        option2 = new Option(e.name, e.id);
         select1.appendChild(option1);
+        select2.appendChild(option2);
     });
 }
 
