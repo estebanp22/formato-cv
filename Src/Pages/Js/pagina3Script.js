@@ -2,10 +2,9 @@ function guardarExperienciaLaboral() {
     // Obtener el formulario
     var form = document.getElementById("formularioEmpleoActual");
 
-    // Crear un objeto FormData para capturar los datos del formulario
     var formData = new FormData(form);
 
-    // Verificar los datos que se están enviando (opcional para depuración)
+    // Verificar los datos que se están enviando
     for (var pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
     }
@@ -34,15 +33,14 @@ function guardarEmpleoAnterior() {
     // Obtener el formulario
     var form = document.getElementById("formularioEmpleoAnterior");
 
-    // Crear un objeto FormData para capturar los datos del formulario
+    // Crear un objeto FormData
     var formData = new FormData(form);
 
-    // Verificar los datos que se están enviando (opcional para depuración)
+    // Verificar los datos que se están enviando
     for (var pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
     }
 
-    // Enviar los datos usando Fetch API
     fetch('../Php/guardarEmpleoAnterior.php', {
         method: 'POST',
         body: formData,
@@ -53,7 +51,7 @@ function guardarEmpleoAnterior() {
             if (data.status === "success") {
                 alert("Datos guardados correctamente");
             } else {
-                alert("Error al guardar datos: " + data.message);
+                //alert("Error al guardar datos: " + data.message);
             }
         })
         .catch(error => {
@@ -64,7 +62,7 @@ function guardarEmpleoAnterior() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    cargarDatosExperiencia();  // Cargar los datos al cargar la página
+    cargarDatosExperiencia();
 });
 
 // Función para cargar los datos de experiencia laboral
@@ -84,7 +82,7 @@ function cargarDatosExperiencia() {
                 document.querySelector('[name="dependencia"]').value = experiencia.dependencia || '';
                 document.querySelector('[name="direccion"]').value = experiencia.direccion || '';
 
-                // Seleccionar radios de tipo de empresa (se usa name y valores 'publica' y 'privada')
+                // Seleccionar radios de tipo de empresa
                 if (experiencia.naturalezaJuridica) {
                     const radioTipoEmpresa = document.querySelector(`[name="tipo-empresa-actual"][value="${experiencia.naturalezaJuridica}"]`);
                     if (radioTipoEmpresa) {
@@ -111,7 +109,7 @@ function cargarDatosExperiencia() {
                 }
 
             } else {
-                alert("Error al cargar los datos de experiencia laboral: " + data.message);
+                //alert("Error al cargar los datos de experiencia laboral: " + data.message);
             }
         })
         .catch(error => {
@@ -143,10 +141,8 @@ function llenarFormulario(empleos) {
     empleos.forEach((empleo, index) => {
         const indice = index + 1;
 
-        // Clonar la estructura del formulario base
         const formBase = formulario.cloneNode(true);
 
-        // Actualizar IDs y Names con el índice
         formBase.querySelectorAll("[id], [name]").forEach(elemento => {
             if (elemento.id) {
                 elemento.id += `-${indice}`;
@@ -179,7 +175,6 @@ function llenarFormulario(empleos) {
 }
 
 
-// Función para setear los selects por el valor de la base de datos y el índice
 function setearSelect(selectId, valor, index) {
     const select = document.getElementById(`${selectId}-${index}`);
     if (select) {

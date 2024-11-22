@@ -171,7 +171,7 @@ function guardarDireccionCorrespondencia() {
             if (data.status === 'success') {
                 alert(data.message);  // Datos guardados correctamente
             } else {
-                alert('Error: ' + data.message);  // Mostrar mensaje de error
+                alert('Error: ' + data.message);
             }
         })
         .catch(error => {

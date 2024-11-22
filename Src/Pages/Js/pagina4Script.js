@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         try {
-            // Realizar la solicitud AJAX al backend
             const respuesta = await fetch("guardar_tiempo_experiencia.php", {
                 method: "POST",
                 headers: {
@@ -62,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Asignar evento al formulario
     formularioTiempoExperiencia.addEventListener("submit", guardarTiempoExperiencia);
 });
 

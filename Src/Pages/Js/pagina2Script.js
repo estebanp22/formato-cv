@@ -32,7 +32,7 @@ function guardarEducacionSuperior() {
     // Crear un objeto FormData para capturar los datos del formulario
     var formData = new FormData(form);
 
-    // Verificar los datos que se están enviando (opcional para depuración)
+    // Verificar los datos que se están enviando
     for (var pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
     }
@@ -65,7 +65,7 @@ function guardarIdioma() {
     // Crear un objeto FormData para capturar los datos del formulario
     var formData = new FormData(form);
 
-    // Verificar los datos que se están enviando (opcional para depuración)
+    // Verificar los datos que se están enviando
     for (var pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
     }
@@ -116,7 +116,7 @@ function cargarDatosEducacion() {
                     inputFechaGrado.value = educacion.fechaGrado; // Establecer la fecha
                 }
             } else {
-                alert("Error al cargar los datos de educación: " + data.message);
+                //alert("Error al cargar los datos de educación: " + data.message);
             }
         })
         .catch(error => {
@@ -125,7 +125,6 @@ function cargarDatosEducacion() {
         });
 }
 
-// Ejecutar la función cuando la página cargue
 document.addEventListener("DOMContentLoaded", cargarDatosEducacion);
 
 function cargarDatosEducacionSuperior() {
@@ -138,21 +137,18 @@ function cargarDatosEducacionSuperior() {
                 // Obtener el cuerpo de la tabla
                 const tbody = document.querySelector('table tbody');
 
-                // Limpiar cualquier fila existente
                 tbody.innerHTML = '';
 
-                // Recorrer cada registro de educación superior
                 educacion.forEach((registro, index) => {
                     // Crear una nueva fila
                     const fila = document.createElement('tr');
 
-                    // Generar las opciones de semestres aprobados (1 a 12)
+                    // Generar las opciones de semestres aprobados
                     let semestresOptions = '';
                     for (let i = 1; i <= 12; i++) {
                         semestresOptions += `<option value="${i}" ${registro.semestresAprovados == i ? 'selected' : ''}>${i}</option>`;
                     }
 
-                    // Agregar las celdas a la fila
                     fila.innerHTML = `
                         <td>
                             <select class="form-control" name="nivel_educativo" id="nivel_educativo${index}">
@@ -209,11 +205,11 @@ function cargarDatosEducacionSuperior() {
                         <td><input type="text" class="form-control" name="num_tarjeta_profesional" value="${registro.numeroTarjetaProfesional}" /></td>
                     `;
 
-                    // Agregar la fila al cuerpo de la tabla
+                    // Agregar la fila a la tabla
                     tbody.appendChild(fila);
                 });
             } else {
-                alert("Error al cargar los datos de educación superior: " + data.message);
+                //alert("Error al cargar los datos de educación superior: " + data.message);
             }
         })
         .catch(error => {
@@ -232,13 +228,10 @@ function cargarDatosIdiomas() {
             if (data.status === "success") {
                 const idiomas = data.data;
 
-                // Obtener el cuerpo de la tabla
                 const tbody = document.querySelector('#tablaIdiomas tbody');
 
-                // Limpiar cualquier contenido existente en la tabla
                 tbody.innerHTML = '';
 
-                // Recorrer los datos obtenidos y crear una fila por cada idioma
                 idiomas.forEach((idioma, index) => {
                     const fila = document.createElement('tr');
 
@@ -305,7 +298,7 @@ function cargarDatosIdiomas() {
 
 
 
-                    // Agregar la fila al cuerpo de la tabla
+                    // Agregar la fila a la tabla
                     tbody.appendChild(fila);
                 });
             } else {
