@@ -67,98 +67,79 @@
                 <div class="form-group">
                     <table class="table table-striped">
                         <thead>
-                            <tr>
-                                <th>OCUPACIÓN</th>
-                                <th>TIEMPO DE EXPERIENCIA</th>
-
-
-                            </tr>
-                            <tr>
-                                <th></th>
-                                <th>AÑOS</th>
-                                <th>MESES</th>
-
-                            </tr>
+                        <tr>
+                            <th>OCUPACIÓN</th>
+                            <th>TIEMPO DE EXPERIENCIA</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>AÑOS</th>
+                            <th>MESES</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr>
-
-                                <td>
-                                    <label for="entidad">SERVIDOR PÚBLICO</label>
-                                </td>
-
-                                <td>
-                                    <select class="form-control" name="anios-servidor-publico" id="anios-servidor-publico">
-                                        <option value="" disabled selected>Seleccione</option>
-                                    </select>
-                                </td>
-
-                                <td>
-                                    <select class="form-control" name="meses-servidor-publico" id="meses-servidor-publico">
-                                        <option value="" disabled selected>Seleccione</option>
-                                    </select>
-                                </td>
-                            </tr>
-
-                            <tr>
-
-                                <td>
-                                    <label for="entidad">EMPLEADO DEL SECTOR PRIVADO</label>
-                                </td>
-
-                                <td>
-                                <select class="form-control" name="anios-servidor-publico" id="anios-servidor-privado">
-                                        <option value="" disabled selected>Seleccione</option>
-                                    </select>
-                                </td>
-
-                                <td>
-                                <select class="form-control" name="meses-servidor-publico" id="meses-servidor-privado">
-                                        <option value="" disabled selected>Seleccione</option>
-                                    </select>
-                                </td>
-                            </tr>
-
-                            <tr>
-
-                                <td>
-                                    <label for="entidad">TRABAJADOR INDEPENDIENTE</label>
-                                </td>
-
-                                <td>
-                                <select class="form-control" name="anios-servidor-publico" id="anios-independiente">
-                                        <option value="" disabled selected>Seleccione</option>
-                                    </select>
-                                </td>
-
-                                <td>
-                                    <select class="form-control" name="meses-servidor-publico" id="meses-independiente">
-                                        <option value="" disabled selected>Seleccione</option>
-                                    </select>
-                                </td>
-                            </tr>
-
-                            <tr>
-
-                                <td>
-                                    <label for="entidad">TOTAL TIEMPO EXPERIENCIA</label>
-                                </td>
-
-                                <td>
-                                    <p id="anios-totales"></p>
-                                </td>
-
-                                <td>
-                                    <p id="meses-totales"></p>
-                                </td>
-                            </tr>
-
-
+                        <tr>
+                            <td>
+                                <label for="entidad">SERVIDOR PÚBLICO</label>
+                            </td>
+                            <td>
+                                <select class="form-control" name="anios-servidor-publico" id="anios-servidor-publico">
+                                    <option value="" disabled selected>Seleccione</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" name="meses-servidor-publico" id="meses-servidor-publico">
+                                    <option value="" disabled selected>Seleccione</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="entidad">EMPLEADO DEL SECTOR PRIVADO</label>
+                            </td>
+                            <td>
+                                <select class="form-control" name="anios-servidor-privado" id="anios-servidor-privado">
+                                    <option value="" disabled selected>Seleccione</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" name="meses-servidor-privado" id="meses-servidor-privado">
+                                    <option value="" disabled selected>Seleccione</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="entidad">TRABAJADOR INDEPENDIENTE</label>
+                            </td>
+                            <td>
+                                <select class="form-control" name="anios-independiente" id="anios-independiente">
+                                    <option value="" disabled selected>Seleccione</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" name="meses-independiente" id="meses-independiente">
+                                    <option value="" disabled selected>Seleccione</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="entidad">TOTAL TIEMPO EXPERIENCIA</label>
+                            </td>
+                            <td>
+                                <p id="anios-totales"></p>
+                            </td>
+                            <td>
+                                <p id="meses-totales"></p>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </form>
+
 
         <div class="row">
             <button type="button" onclick="calcularTotal()">Calcular Total Experiencia</button>
@@ -166,7 +147,7 @@
         </div>
 
         <div class="row">
-            <button type="button" onclick="guardarTiempoExperiencia()">Guardar Tiempo de esperiencia</button>
+            <button type="button" onclick="guardarTiempoExperiencia(event)">Guardar Tiempo de esperiencia</button>
 
         </div>
         </br>

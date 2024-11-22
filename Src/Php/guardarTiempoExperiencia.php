@@ -33,22 +33,12 @@ if (!$conn) {
 try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Validar campos requeridos
-    $requiredFields = ['meses-servidor-publico', 'meses-servidor-privado', 'meses-independiente'];
-    $missingFields = [];
 
-    foreach ($requiredFields as $field) {
-        if (!isset($_POST[$field]) || $_POST[$field] === '') {
-            $missingFields[] = $field;
-        }
-    }
 
-    if (!empty($missingFields)) {
-        $response['status'] = 'error';
-        $response['message'] = 'Faltan los siguientes campos: ' . implode(', ', $missingFields);
-        echo json_encode($response);
-        exit;
-    }
+    // Convertir años y meses en meses totales
+    $mesesServidorPublico = ($_POST['anios-servidor-publico'] * 12) + $_POST['meses-servidor-publico'];
+    $mesesServidorPrivado = ($_POST['anios-servidor-privado'] * 12) + $_POST['meses-servidor-privado'];
+    $mesesIndependiente = ($_POST['anios-independiente'] * 12) + $_POST['meses-independiente'];
 
     // Preparar consulta SQL
     $sql = "INSERT INTO tiempo_experiencia (
@@ -62,9 +52,9 @@ try {
     // Ejecutar consulta
     $stmt->execute([
         ':idPersona' => $idPersona,
-        ':mesesSectorPublico' => $_POST['meses-servidor-publico'],
-        ':mesesSectorPrivado' => $_POST['meses-servidor-privado'],
-        ':MesesIndependiente' => $_POST['meses-independiente']
+        ':mesesSectorPublico' => $mesesServidorPublico,
+        ':mesesSectorPrivado' => $mesesServidorPrivado,
+        ':MesesIndependiente' => $mesesIndependiente
     ]);
 
     // Respuesta exitosa
