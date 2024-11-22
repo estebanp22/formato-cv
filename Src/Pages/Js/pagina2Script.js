@@ -89,4 +89,14 @@ function guardarIdioma() {
         });
 }
 
+function llenarSemestresAprovados() {
+    let selectSemestre = document.getElementById("semestres-aprobados");
+    for (let i = 1; i <= 12; i++) {
+        option = new Option(i, i);
+        selectSemestre.appendChild(option);
+    }
+}
 
+function cargaInicial(){
+    llenarSemestresAprovados();
+}

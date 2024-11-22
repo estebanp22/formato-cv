@@ -62,3 +62,95 @@ function guardarEmpleoAnterior() {
         });
 }
 
+(function () {
+    paises = Array();
+    municipios = Array();
+    departamentos = Array();
+})();
+
+function cargaInicial() {
+    const url = "https://restcountries.com/v3.1/all";
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => obtenerPaises(data));
+
+    const url2 = "https://raw.githubusercontent.com/marcovega/colombia-json/master/colombia.min.json";
+    fetch(url2)
+        .then(response => response.json())
+        .then(data => obtenerDepartamentosMunicpios(data));
+}
+
+function obtenerPaises(data) {
+    //console.log(data);
+    //console.log("tamano :" + data.length);
+    console.log("Mostrando paises")
+    let index = 0;
+    data.forEach(element => {
+        let pais = {
+            id: index,
+            name: element.name.common,
+            region: element.region,
+            continente: element.continents[0]
+        };
+
+        if (pais.name != "Suriname" && pais.name != "French Guiana" && pais.name != "Falkland Islands") {
+            paises[index] = pais;
+            paises.push(pais);
+            index += 1;
+        }
+    });
+    //console.log(`la cantidad de paises son: ${paises.length} `);
+    //console.log(paises);
+
+    const paisesF = paises.filter(e => e.continente == "South America");
+
+    //console.log(`la cantidad de paises filtrados son: ${paisesF.length} `);
+    //console.log(paisesF);
+
+    //adicionar valores al select
+    let select = document.getElementById("pais_empresa");
+    let select1 = document.getElementById("pais_empresa_anterior")
+    paisesF.forEach(e => {
+        option = new Option(e.name, e.id);
+        option1 = new Option(e.name, e.id);
+        select.appendChild(option);
+        select1.appendChild(option);
+    });
+}
+
+function obtenerDepartamentosMunicpios(data) {
+    //Extraer departamentos y municipios
+    //console.log("Mostrando departamentos y municipios")
+    data.forEach(departamento => {
+        departamentos.push(departamento.departamento);
+        municipios[departamento.departamento] = departamento.ciudades;
+    });
+
+    configurarDropdown("departamento_empresa", "ciudad-empresa");
+    configurarDropdown("departamento_empresa-anterior", "ciudad-empresa-anterior");
+}
+function configurarDropdown(idDepartamento, idMunicipio){
+    //Dropdown de departamentos
+    let selectDepartamento = document.getElementById(idDepartamento);
+    let selectMunicipio = document.getElementById(idMunicipio);
+
+    departamentos.forEach(depto =>{
+        let option = new Option(depto, depto);
+        selectDepartamento.appendChild(option);
+    });
+    //Municipios segun el departamento seleccionado
+    selectDepartamento.addEventListener("change", function(){
+        let selectDpto = this.value;
+        //Quitar municipios anteriores
+        selectMunicipio.innerHTML = '<option value="" disabled selected>Selecciona tu ciudad</option>';
+
+        //Añadir los municipios del departamento seleccionado
+        municipios[selectDpto].forEach(muni => {
+            let option = new Option(muni, muni);
+            selectMunicipio.appendChild(option);
+        });
+
+        selectMunicipio.disabled = false;
+    });
+}

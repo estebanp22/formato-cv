@@ -15,10 +15,6 @@ function cargaInicial() {
     fetch(url2)
         .then(response => response.json())
         .then(data => obtenerDepartamentosMunicpios(data));
-
-
-
-
 }
 
 function obtenerPaises(data) {
@@ -60,8 +56,6 @@ function obtenerPaises(data) {
         select1.appendChild(option1);
         select2.appendChild(option2);
     });
-
-
 }
 
 function obtenerDepartamentosMunicpios(data) {

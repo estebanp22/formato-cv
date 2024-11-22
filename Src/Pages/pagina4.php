@@ -88,36 +88,13 @@
 
                             <td>
                                 <select class="form-control" name="anios-servidor-publico" id="anios-servidor-publico">
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
+                                    <option value="" disabled selected>Seleccione</option>
                                 </select>
                             </td>
 
                             <td>
                                 <select class="form-control" name="meses-servidor-publico" id="meses-servidor-publico">
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
+                                    <option value="" disabled selected>Seleccione</option>
                                 </select>
                             </td>
                         </tr>
@@ -129,37 +106,14 @@
                             </td>
 
                             <td>
-                                <select class="form-control" name="anios-sector-privado" id="anios-sector-privado">
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
+                            <select class="form-control" name="anios-servidor-publico" id="anios-servidor-privado">
+                                    <option value="" disabled selected>Seleccione</option>
                                 </select>
                             </td>
 
                             <td>
-                                <select class="form-control" name="meses-sector-privado" id="meses-sector-privado">
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
+                            <select class="form-control" name="meses-servidor-publico" id="meses-servidor-privado">
+                                    <option value="" disabled selected>Seleccione</option>
                                 </select>
                             </td>
                         </tr>
@@ -171,37 +125,14 @@
                             </td>
 
                             <td>
-                                <select class="form-control" name="anios-independiente" id="anios-independiente">
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
+                            <select class="form-control" name="anios-servidor-publico" id="anios-independiente">
+                                    <option value="" disabled selected>Seleccione</option>
                                 </select>
                             </td>
 
                             <td>
-                                <select class="form-control" name="meses-independiente" id="meses-independiente">
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
+                                <select class="form-control" name="meses-servidor-publico" id="meses-independiente">
+                                    <option value="" disabled selected>Seleccione</option>
                                 </select>
                             </td>
                         </tr>
