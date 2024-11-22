@@ -1,58 +1,33 @@
-<?<?php
-  // Configurar encabezado JSON
-  header('Content-Type: application/json');
+<?php
+header('Content-Type: application/json');
+session_start();
 
-  // Iniciar sesión para obtener el idPersona
-  session_start();
+$response = [];
 
-  // Inicializar respuesta
-  $response = [];
+if (!isset($_SESSION["idPersona"])) {
+    echo json_encode(["status" => "error", "message" => "No se encontró idPersona en la sesión."]);
+    exit;
+}
 
-  // Verificar que el idPersona esté en la sesión
-  if (!isset($_SESSION["idPersona"])) {
-      $response['status'] = 'error';
-      $response['message'] = 'No se encontró el idPersona en la sesión.';
-      echo json_encode($response);
-      exit;
-  }
+$idPersona = $_SESSION["idPersona"];
+include("../Php/BD.php");
 
-  // Obtener el idPersona desde la sesión
-  $idPersona = $_SESSION["idPersona"];
+if (!$conn) {
+    echo json_encode(["status" => "error", "message" => "Error al conectar con la base de datos."]);
+    exit;
+}
 
-  // Incluir archivo de conexión a la base de datos
-  include("../Php/BD.php");
+try {
+    $stmt = $conn->prepare("SELECT * FROM experiencia_laboral WHERE idPersona = :idPersona AND vigente = 0");
+    $stmt->execute([":idPersona" => $idPersona]);
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-  // Verificar conexión
-  if (!$conn) {
-      $response['status'] = 'error';
-      $response['message'] = 'No se pudo conectar a la base de datos.';
-      echo json_encode($response);
-      exit;
-  }
-
-  try {
-      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-      // Obtener los registros de experiencia laboral
-      $stmt = $conn->prepare("SELECT * FROM experiencia_laboral WHERE idPersona = :idPersona AND vigente = 0");
-      $stmt->execute([':idPersona' => $idPersona]);
-      $experiencias = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-      // Verificar si se encontraron experiencias
-      if ($experiencias) {
-          $response['status'] = 'success';
-          $response['data'] = $experiencias;  // Devolver los registros encontrados
-      } else {
-          $response['status'] = 'error';
-          $response['message'] = 'No se encontraron registros de experiencia laboral.';
-      }
-
-  } catch (PDOException $e) {
-      // Manejar errores de la base de datos
-      $response['status'] = 'error';
-      $response['message'] = 'Error al obtener los datos: ' . $e->getMessage();
-  }
-
-  // Enviar la respuesta como JSON
-  echo json_encode($response);
-  ?>
+    if ($data) {
+        echo json_encode(["status" => "success", "data" => $data]);
+    } else {
+        echo json_encode(["status" => "error", "message" => "No se encontraron registros."]);
+    }
+} catch (PDOException $e) {
+    echo json_encode(["status" => "error", "message" => $e->getMessage()]);
+}
+?>

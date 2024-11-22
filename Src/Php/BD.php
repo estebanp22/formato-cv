@@ -3,8 +3,8 @@
 $host = "localhost";
 $dbname = "hojadevida";
 $username = "root";
-$password = "";
-//$password = "Esteban.22";
+//$password = "";
+$password = "Esteban.22";
 
 
 try {

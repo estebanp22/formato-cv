@@ -121,47 +121,63 @@ function cargarDatosExperiencia() {
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    cargarDatosEmpleosAnteriores();  // Cargar los datos al cargar la página
+document.addEventListener("DOMContentLoaded", () => {
+    cargarEmpleosAnteriores();
 });
 
-// Función para cargar los datos de empleos anteriores
-function cargarDatosEmpleosAnteriores() {
-    fetch('../Php/obtenerEmpleosAnteriores.php', { method: 'GET' })
+function cargarEmpleosAnteriores() {
+    fetch("../Php/obtenerEmpleosAnteriores.php")
         .then(response => response.json())
         .then(data => {
             if (data.status === "success") {
-                const empleosAnteriores = data.data;
-
-                // Llenar los campos dinámicamente para cada empleo anterior
-                empleosAnteriores.forEach((empleo, index) => {
-                    // Asignar un índice dinámico para cada grupo de campos
-                    const idx = index + 1;  // Indice para los campos
-
-                    // Asignar los valores a los campos con el índice correspondiente
-                    document.getElementById(`empresa-anterior`).value = empleo.empresa;
-                    document.querySelectorAll(`[name="tipo-empresa-anterior"]`)[empleo.naturalezaJuridica === 'publica' ? 0 : 1].checked = true;
-                    setearSelect(`pais_empresa-anterior`, empleo.pais, idx);
-                    setearSelect(`departamento_empresa-anterior`, empleo.departamento, idx);
-                    setearSelect(`ciudad-empresa-anterior`, empleo.municipio, idx);
-                    document.getElementById(`email-empresa-anterior`).value = empleo.correo;
-                    document.getElementById(`telefono-empresa-anterior`).value = empleo.telefono;
-                    document.getElementById(`fecha-ingreso-anterior`).value = formatFecha(empleo.fechaInicio);
-                    document.getElementById(`fecha-fin-anterior`).value = formatFecha(empleo.fechaFin);
-                    document.getElementById(`cargo_contrato-anterior`).value = empleo.cargo;
-                    document.getElementById(`dependencia-anterior`).value = empleo.dependencia;
-                    document.getElementById(`direccion-anterior`).value = empleo.direccion;
-                });
-
+                llenarFormulario(data.data);
             } else {
-                alert("Error al cargar los datos de empleo anterior: " + data.message);
+                console.error("Error:", data.message);
             }
         })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Hubo un problema al cargar los datos.');
-        });
+        .catch(error => console.error("Error al cargar datos:", error));
 }
+
+function llenarFormulario(empleos) {
+    const formulario = document.getElementById("formularioEmpleoAnterior");
+    empleos.forEach((empleo, index) => {
+        const indice = index + 1;
+
+        // Clonar la estructura del formulario base
+        const formBase = formulario.cloneNode(true);
+
+        // Actualizar IDs y Names con el índice
+        formBase.querySelectorAll("[id], [name]").forEach(elemento => {
+            if (elemento.id) {
+                elemento.id += `-${indice}`;
+            }
+            if (elemento.name) {
+                elemento.name += `-${indice}`;
+            }
+        });
+
+        // Llenar datos de cada campo
+        formBase.querySelector(`#empresa-anterior-${indice}`).value = empleo.empresa;
+        formBase.querySelector(`input[name="tipo-empresa-anterior-${indice}"][value="${empleo.naturalezaJuridica}"]`).checked = true;
+        formBase.querySelector(`#pais_empresa-anterior-${indice}`).value = empleo.pais;
+        formBase.querySelector(`#departamento_empresa-anterior-${indice}`).value = empleo.departamento;
+        formBase.querySelector(`#ciudad-empresa-anterior-${indice}`).value = empleo.municipio;
+        formBase.querySelector(`#email-empresa-anterior-${indice}`).value = empleo.correo;
+        formBase.querySelector(`#telefono-empresa-anterior-${indice}`).value = empleo.telefono;
+        formBase.querySelector(`#fecha-ingreso-anteriorr-${indice}`).value = empleo.fechaInicio;
+        formBase.querySelector(`#fecha-fin-anterior-${indice}`).value = empleo.fechaFin;
+        formBase.querySelector(`#cargo_contrato-anterior-${indice}`).value = empleo.cargo;
+        formBase.querySelector(`#dependencia-anterior-${indice}`).value = empleo.dependencia;
+        formBase.querySelector(`#direccion-anterior-${indice}`).value = empleo.direccion;
+
+        // Insertar el bloque clonado en el DOM
+        formulario.parentNode.appendChild(formBase);
+    });
+
+    // Eliminar la plantilla original
+    formulario.remove();
+}
+
 
 // Función para setear los selects por el valor de la base de datos y el índice
 function setearSelect(selectId, valor, index) {
