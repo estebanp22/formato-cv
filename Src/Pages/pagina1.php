@@ -278,5 +278,13 @@ if (isset($_SESSION["idPersona"])) {
     </div>
 
 </body>
+<script>
+        const idPersonaFromSession = '<?php echo $idPersona; ?>';
+
+        if (idPersonaFromSession) {
+            document.querySelector('[name="numeroDocumento"]').value = idPersonaFromSession;
+            document.querySelector('[name="numeroDocumento"]').disabled = true;
+        }
+    </script>
 
 </html>

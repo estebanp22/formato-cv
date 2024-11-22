@@ -74,11 +74,11 @@
                     <input type="text" class="form-control" id="empresa" name="empresa-actual">
 
                     <div class="radio">
-                        <label><input type="radio" id="tipo-empresa-actual" value="publica" name="tipo-empresa-actual">Publica</label>
+                        <label><input type="radio" id="tipo-empresa-publica" value="publica" name="tipo-empresa-actual">Publica</label>
                     </div>
 
                     <div class="radio">
-                        <label><input type="radio" id="tipo-empresa-actual" value="privada" name="tipo-empresa-actual">Privada</label>
+                        <label><input type="radio" id="tipo-empresa-privada" value="privada" name="tipo-empresa-actual">Privada</label>
                     </div>
                 </div>
             </div>

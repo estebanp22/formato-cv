@@ -34,7 +34,7 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Validar campos requeridos
-    $requiredFields = ['idioma', 'nivel-habla-idioma', 'nivel-lee-idioma', 'nivel-escribe-idioma'];
+    $requiredFields = ['idioma0', 'nivel-habla-idioma0', 'nivel-lee-idioma0', 'nivel-escribe-idioma0'];
     $missingFields = [];
 
     foreach ($requiredFields as $field) {
@@ -62,10 +62,10 @@ try {
     // Ejecutar consulta con los datos del formulario
     $stmt->execute([
         ':idPersona' => $idPersona,
-        ':idioma' => $_POST['idioma'],
-        ':habla' => $_POST['nivel-habla-idioma'],
-        ':lee' => $_POST['nivel-lee-idioma'],
-        ':escribe' => $_POST['nivel-escribe-idioma']
+        ':idioma' => $_POST['idioma0'],
+        ':habla' => $_POST['nivel-habla-idioma0'],
+        ':lee' => $_POST['nivel-lee-idioma0'],
+        ':escribe' => $_POST['nivel-escribe-idioma0']
     ]);
 
     // Respuesta exitosa

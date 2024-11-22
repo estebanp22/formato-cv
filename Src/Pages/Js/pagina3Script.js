@@ -62,6 +62,135 @@ function guardarEmpleoAnterior() {
         });
 }
 
+
+document.addEventListener('DOMContentLoaded', () => {
+    cargarDatosExperiencia();  // Cargar los datos al cargar la página
+});
+
+// Función para cargar los datos de experiencia laboral
+function cargarDatosExperiencia() {
+    fetch('../Php/obtenerExperienciaActual.php', { method: 'GET' })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                const experiencia = data.data;
+
+                // Llenar los campos de texto
+                document.querySelector('[name="empresa-actual"]').value = experiencia.empresa || '';
+                document.querySelector('[name="email-empresa"]').value = experiencia.correo || '';
+                document.querySelector('[name="telefono-empresa"]').value = experiencia.telefono || '';
+                document.querySelector('[name="fecha-ingreso"]').value = experiencia.fechaInicio || '';
+                document.querySelector('[name="cargo_contrato"]').value = experiencia.cargo || '';
+                document.querySelector('[name="dependencia"]').value = experiencia.dependencia || '';
+                document.querySelector('[name="direccion"]').value = experiencia.direccion || '';
+
+                // Seleccionar radios de tipo de empresa (se usa name y valores 'publica' y 'privada')
+                if (experiencia.naturalezaJuridica) {
+                    const radioTipoEmpresa = document.querySelector(`[name="tipo-empresa-actual"][value="${experiencia.naturalezaJuridica}"]`);
+                    if (radioTipoEmpresa) {
+                        radioTipoEmpresa.checked = true;
+                    }
+                }
+
+                // Seleccionar valor para el select de Pais
+                const paisSelect = document.getElementById('pais_empresa');
+                if (paisSelect) {
+                    paisSelect.value = experiencia.pais || '';  // Establece el valor del país
+                }
+
+                // Seleccionar valor para el select de Departamento
+                const departamentoSelect = document.getElementById('departamento_empresa');
+                if (departamentoSelect) {
+                    departamentoSelect.value = experiencia.departamento || '';  // Establece el valor del departamento
+                }
+
+                // Seleccionar valor para el select de Municipio
+                const municipioSelect = document.getElementById('ciudad-empresa');
+                if (municipioSelect) {
+                    municipioSelect.value = experiencia.municipio || '';  // Establece el valor del municipio
+                }
+
+            } else {
+                alert("Error al cargar los datos de experiencia laboral: " + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Hubo un problema al cargar los datos.');
+        });
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    cargarDatosEmpleosAnteriores();  // Cargar los datos al cargar la página
+});
+
+// Función para cargar los datos de empleos anteriores
+function cargarDatosEmpleosAnteriores() {
+    fetch('../Php/obtenerEmpleosAnteriores.php', { method: 'GET' })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                const empleosAnteriores = data.data;
+
+                // Llenar los campos dinámicamente para cada empleo anterior
+                empleosAnteriores.forEach((empleo, index) => {
+                    // Asignar un índice dinámico para cada grupo de campos
+                    const idx = index + 1;  // Indice para los campos
+
+                    // Asignar los valores a los campos con el índice correspondiente
+                    document.getElementById(`empresa-anterior`).value = empleo.empresa;
+                    document.querySelectorAll(`[name="tipo-empresa-anterior"]`)[empleo.naturalezaJuridica === 'publica' ? 0 : 1].checked = true;
+                    setearSelect(`pais_empresa-anterior`, empleo.pais, idx);
+                    setearSelect(`departamento_empresa-anterior`, empleo.departamento, idx);
+                    setearSelect(`ciudad-empresa-anterior`, empleo.municipio, idx);
+                    document.getElementById(`email-empresa-anterior`).value = empleo.correo;
+                    document.getElementById(`telefono-empresa-anterior`).value = empleo.telefono;
+                    document.getElementById(`fecha-ingreso-anterior`).value = formatFecha(empleo.fechaInicio);
+                    document.getElementById(`fecha-fin-anterior`).value = formatFecha(empleo.fechaFin);
+                    document.getElementById(`cargo_contrato-anterior`).value = empleo.cargo;
+                    document.getElementById(`dependencia-anterior`).value = empleo.dependencia;
+                    document.getElementById(`direccion-anterior`).value = empleo.direccion;
+                });
+
+            } else {
+                alert("Error al cargar los datos de empleo anterior: " + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Hubo un problema al cargar los datos.');
+        });
+}
+
+// Función para setear los selects por el valor de la base de datos y el índice
+function setearSelect(selectId, valor, index) {
+    const select = document.getElementById(`${selectId}-${index}`);
+    if (select) {
+        const options = Array.from(select.options);
+        const option = options.find(option => option.value === valor);
+        if (option) {
+            option.selected = true;
+        }
+    }
+}
+
+// Función para formatear las fechas en formato dd/mm/yyyy
+function formatFecha(fecha) {
+    const fechaObj = new Date(fecha);
+    const dia = String(fechaObj.getDate()).padStart(2, '0');
+    const mes = String(fechaObj.getMonth() + 1).padStart(2, '0'); // Los meses comienzan en 0
+    const año = fechaObj.getFullYear();
+    return `${dia}/${mes}/${año}`;
+}
+
+
+
+
+
+
+
+
 (function () {
     paises = Array();
     municipios = Array();

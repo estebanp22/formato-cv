@@ -223,13 +223,15 @@ function cargarDatosPersona() {
                     }
                 }
             } else {
-                alert("Error al cargar datos: " + data.message);
+                //alert("Error al cargar datos: " + data.message);
+
             }
         })
         .catch(error => {
             console.error('Error:', error);
             alert('Hubo un problema al cargar los datos.');
         });
+
 }
 
 function cargarDatosLibreta() {
@@ -251,7 +253,7 @@ function cargarDatosLibreta() {
                     }
                 }
             } else {
-                alert("Error al cargar los datos de la libreta militar: " + data.message);
+                //alert("Error al cargar los datos de la libreta militar: " + data.message);
             }
         })
         .catch(error => {
@@ -290,7 +292,7 @@ function cargarDatosCorrespondencia() {
                     selectMunicipio.value = direccion.municipio; // Seleccionar el municipio correspondiente
                 }
             } else {
-                alert("Error al cargar los datos de dirección: " + data.message);
+                //alert("Error al cargar los datos de dirección: " + data.message);
             }
         })
         .catch(error => {

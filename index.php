@@ -1,19 +1,31 @@
 <?php
-// Incluir archivo de conexión
+ob_start();
+session_start();
+session_destroy();
+?>
+<?php
+session_start();
+
+if (isset($_SESSION["idPersona"])) {
+    $idPersona = $_SESSION["idPersona"];
+    echo "El ID de la persona es: " . $idPersona;
+} else {
+    echo "No hay ningún ID registrado.";
+}
+?>
+
+<?php
 include("Src/Php/BD.php");
 
 try {
-    // Verificar conexión
     if (!$conn) {
         throw new Exception("No se pudo conectar a la base de datos.");
     }
 
-    // Preparar y ejecutar la consulta
     $sql = "SELECT idPersona, nombres, primerApellido, segundoApellido FROM persona";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 
-    // Verificar si hay resultados
     if ($stmt->rowCount() > 0) {
         $personas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } else {
@@ -53,17 +65,6 @@ try {
             </div>
         </div>
 
-<!-- Continuacion -->
-        <div class="form-container mt-4">
-            <p>Si ya cuentas con un avance en tu hoja de vida, ingresa aqui tu número de documento:</p>
-            <form method="POST" action="Src/Php/guardarSesion.php">
-                <div class="mb-3">
-                    <label for="idPersona" class="form-label">Numero de documento:</label>
-                    <input type="text" class="form-control" id="idPersona" name="idPersona" required>
-                </div>
-                <button type="submit" class="btn btn-success btn-block">Continuar</button>
-            </form>
-        </div>
 
 
 <!-- Ingreso por primera vez -->
@@ -101,7 +102,12 @@ try {
                                 <td><?= htmlspecialchars($persona['primerApellido']) ?></td>
                                 <td><?= htmlspecialchars($persona['segundoApellido']) ?></td>
                                 <td>
-                                    <button class="btn btn-info btn-sm">Ver</button>
+                                    <form method="POST" action="Src/Php/guardarSesion.php">
+                                        <!-- Campo oculto que lleva el idPersona de la fila -->
+                                        <input type="hidden" name="idPersona" value="<?= htmlspecialchars($persona['idPersona']) ?>">
+                                        <!-- Botón de enviar -->
+                                        <button type="submit" class="btn btn-success btn-block">Ver</button>
+                                    </form>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -113,6 +119,7 @@ try {
                 </tbody>
             </table>
         </div>
+
 
 
         <footer>

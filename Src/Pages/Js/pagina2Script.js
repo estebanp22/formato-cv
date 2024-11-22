@@ -47,6 +47,7 @@ function guardarEducacionSuperior() {
             // Verificar si la respuesta es exitosa
             if (data.status === "success") {
                 alert("Datos guardados correctamente");
+                cargarDatosEducacionSuperior();
             } else {
                 alert("Error al guardar datos: " + data.message);
             }
@@ -79,6 +80,7 @@ function guardarIdioma() {
             // Verificar si la respuesta es exitosa
             if (data.status === "success") {
                 alert("Datos guardados correctamente");
+                cargarDatosIdiomas();
             } else {
                 alert("Error al guardar datos: " + data.message);
             }
@@ -144,6 +146,12 @@ function cargarDatosEducacionSuperior() {
                     // Crear una nueva fila
                     const fila = document.createElement('tr');
 
+                    // Generar las opciones de semestres aprobados (1 a 12)
+                    let semestresOptions = '';
+                    for (let i = 1; i <= 12; i++) {
+                        semestresOptions += `<option value="${i}" ${registro.semestresAprovados == i ? 'selected' : ''}>${i}</option>`;
+                    }
+
                     // Agregar las celdas a la fila
                     fila.innerHTML = `
                         <td>
@@ -161,20 +169,15 @@ function cargarDatosEducacionSuperior() {
                         <td>
                             <select class="form-control" name="semestres-aprobados" id="semestres-aprobados${index}">
                                 <option value="" disabled selected>Seleccionar</option>
-                                <option value="1" ${registro.semestresAprovados == 1 ? 'selected' : ''}>1</option>
-                                <option value="2" ${registro.semestresAprovados == 2 ? 'selected' : ''}>2</option>
-                                <option value="3" ${registro.semestresAprovados == 3 ? 'selected' : ''}>3</option>
-                                <option value="4" ${registro.semestresAprovados == 4 ? 'selected' : ''}>4</option>
-                                <option value="5" ${registro.semestresAprovados == 5 ? 'selected' : ''}>5</option>
-                                <option value="6" ${registro.semestresAprovados == 6 ? 'selected' : ''}>6</option>
+                                ${semestresOptions}
                             </select>
                         </td>
                         <td>
                             <div class="radio">
-                                <label><input type="radio" id="graduado${index}" name="graduado${index}" value="si" ${registro.graduado == 1 ? 'checked' : ''}> Si</label>
+                                <label><input type="radio" id="graduado${index}" name="graduado${index}" value="1" ${registro.graduado == 1 ? 'checked' : ''}> Si</label>
                             </div>
                             <div class="radio">
-                                <label><input type="radio" id="graduado${index}" name="graduado${index}" value="no" ${registro.graduado == 0 ? 'checked' : ''}> No</label>
+                                <label><input type="radio" id="graduado${index}" name="graduado${index}" value="0" ${registro.graduado == 0 ? 'checked' : ''}> No</label>
                             </div>
                         </td>
                         <td>
@@ -221,6 +224,104 @@ function cargarDatosEducacionSuperior() {
 
 // Ejecutar la función cuando la página cargue
 document.addEventListener("DOMContentLoaded", cargarDatosEducacionSuperior);
+
+function cargarDatosIdiomas() {
+    fetch('../Php/obtenerIdiomas.php', { method: 'GET' })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                const idiomas = data.data;
+
+                // Obtener el cuerpo de la tabla
+                const tbody = document.querySelector('#tablaIdiomas tbody');
+
+                // Limpiar cualquier contenido existente en la tabla
+                tbody.innerHTML = '';
+
+                // Recorrer los datos obtenidos y crear una fila por cada idioma
+                idiomas.forEach((idioma, index) => {
+                    const fila = document.createElement('tr');
+
+                    // Opciones de idiomas
+                    let idiomaOptions = `
+                        <option value="" disabled selected>Selecciona tu idioma</option>
+                        <option value="espanol" ${idioma.idioma === 'espanol' ? 'selected' : ''}>Español</option>
+                        <option value="ingles" ${idioma.idioma === 'ingles' ? 'selected' : ''}>Inglés</option>
+                        <option value="frances" ${idioma.idioma === 'frances' ? 'selected' : ''}>Francés</option>
+                        <option value="aleman" ${idioma.idioma === 'aleman' ? 'selected' : ''}>Alemán</option>
+                        <option value="italiano" ${idioma.idioma === 'italiano' ? 'selected' : ''}>Italiano</option>
+                        <option value="portugues" ${idioma.idioma === 'portugues' ? 'selected' : ''}>Portugués</option>
+                        <option value="chino_mandarin" ${idioma.idioma === 'chino_mandarin' ? 'selected' : ''}>Chino Mandarín</option>
+                        <option value="japones" ${idioma.idioma === 'japones' ? 'selected' : ''}>Japonés</option>
+                        <option value="ruso" ${idioma.idioma === 'ruso' ? 'selected' : ''}>Ruso</option>
+                        <option value="arabe" ${idioma.idioma === 'arabe' ? 'selected' : ''}>Árabe</option>
+                        <option value="hindu" ${idioma.idioma === 'hindu' ? 'selected' : ''}>Hindú</option>
+                        <option value="coreano" ${idioma.idioma === 'coreano' ? 'selected' : ''}>Coreano</option>
+                    `;
+
+                    // Opciones de nivel
+                    let nivelOptionsHabla = `
+                        <option value="" disabled selected>Selecciona</option>
+                        <option value="regular" ${idioma.habla === 'regular' ? 'selected' : ''}>Regular</option>
+                        <option value="bien" ${idioma.habla === 'bien' ? 'selected' : ''}>Bien</option>
+                        <option value="muy_bien" ${idioma.habla === 'muy_bien' ? 'selected' : ''}>Muy bien</option>
+                    `;
+                    let nivelOptionsLee = `
+                        <option value="" disabled selected>Selecciona</option>
+                        <option value="regular" ${idioma.lee === 'regular' ? 'selected' : ''}>Regular</option>
+                        <option value="bien" ${idioma.lee === 'bien' ? 'selected' : ''}>Bien</option>
+                        <option value="muy_bien" ${idioma.lee === 'muy_bien' ? 'selected' : ''}>Muy bien</option>
+                    `;
+                    let nivelOptionsEscribe = `
+                        <option value="" disabled selected>Selecciona</option>
+                        <option value="regular" ${idioma.escribe === 'regular' ? 'selected' : ''}>Regular</option>
+                        <option value="bien" ${idioma.escribe === 'bien' ? 'selected' : ''}>Bien</option>
+                        <option value="muy_bien" ${idioma.escribe === 'muy_bien' ? 'selected' : ''}>Muy bien</option>
+                    `;
+
+                    // Crear la fila con los select
+                    fila.innerHTML = `
+                            <td>
+                                <select class="form-control" id="idioma${index}" name="idioma${index}">
+                                    ${idiomaOptions}
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" id="nivel-habla-idioma${index}" name="nivel-habla-idioma${index}">
+                                    ${nivelOptionsHabla}
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" id="nivel-lee-idioma${index}" name="nivel-lee-idioma${index}">
+                                    ${nivelOptionsLee}
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" id="nivel-escribe-idioma${index}" name="nivel-escribe-idioma${index}">
+                                    ${nivelOptionsEscribe}
+                                </select>
+                            </td>
+                        `;
+
+
+
+                    // Agregar la fila al cuerpo de la tabla
+                    tbody.appendChild(fila);
+                });
+            } else {
+                //alert("Error al cargar los datos de idiomas: " + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Hubo un problema al cargar los datos de idiomas.');
+        });
+}
+
+// Ejecutar la función al cargar el DOM
+document.addEventListener('DOMContentLoaded', cargarDatosIdiomas);
+
+
 
 
 

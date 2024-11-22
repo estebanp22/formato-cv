@@ -115,6 +115,7 @@
 
         <div class="row">
             <p>DILIGENCIE ESTE PUNTO EN ESTRICTO ORDEN CRONOLÓGICO</p>
+            <p>Si desea añadir un estudio adicional hagalo en el primer campo y presione guardar</p>
         </div>
 
         <form id="formularioEducacionSuperior">
@@ -153,7 +154,7 @@
                                 </td>
 
                                 <td>
-                                    <div class="radio">
+                                    <div class="radio" id="graduado">
                                         <label><input type="radio" id="graduado" value="si" name="graduado">Si</label>
                                     </div>
                                     <div class="radio">
@@ -207,12 +208,14 @@
         <div class="row">
             <p>ESPECÍFIQUE LOS IDIOMAS DIFERENTES AL ESPAÑOL QUE: HABLA, LEE, ESCRIBE DE FORMA, REGULAR (R), BIEN (B) O
                 MUY BIEN (MB)</p>
+        <p>Si desea añadir un estudio adicional hagalo en el primer campo y presione guardar</p>
+
         </div>
 
         <form id="formularioIdioma">
             <div class="container">
                 <div class="form-group">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="tablaIdiomas">
                         <thead>
                             <tr>
                                 <th>IDIOMA</th>
