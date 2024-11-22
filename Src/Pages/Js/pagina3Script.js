@@ -11,7 +11,7 @@ function guardarExperienciaLaboral() {
     }
 
     // Enviar los datos usando Fetch API
-    fetch('guardarContratoActual.php', {
+    fetch('../Php/guardarContratoActual.php', {
         method: 'POST',
         body: formData,
     })
@@ -43,7 +43,7 @@ function guardarEmpleoAnterior() {
     }
 
     // Enviar los datos usando Fetch API
-    fetch('guardarEmpleoAnterior.php', {
+    fetch('../Php/guardarEmpleoAnterior.php', {
         method: 'POST',
         body: formData,
     })
@@ -115,7 +115,7 @@ function obtenerPaises(data) {
         option = new Option(e.name, e.id);
         option1 = new Option(e.name, e.id);
         select.appendChild(option);
-        select1.appendChild(option);
+        select1.appendChild(option1);
     });
 }
 

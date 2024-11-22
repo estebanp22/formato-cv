@@ -1,3 +1,32 @@
+<?php
+// Incluir archivo de conexión
+include("Src/Php/BD.php");
+
+try {
+    // Verificar conexión
+    if (!$conn) {
+        throw new Exception("No se pudo conectar a la base de datos.");
+    }
+
+    // Preparar y ejecutar la consulta
+    $sql = "SELECT idPersona, nombres, primerApellido, segundoApellido FROM persona";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    // Verificar si hay resultados
+    if ($stmt->rowCount() > 0) {
+        $personas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } else {
+        $personas = [];
+    }
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+    exit;
+}
+?>
+
+
+
 <!doctype html>
 <html lang="en">
 
@@ -57,25 +86,34 @@
                         <th>#</th>
                         <th>ID de Persona</th>
                         <th>Nombres</th>
-                        <th>Primer apellido</th>
-                        <th>Segundo apellido</th>
+                        <th>Primer Apellido</th>
+                        <th>Segundo Apellido</th>
                         <th>Ver</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>12345678</td>
-                        <td>Juan</td>
-                        <td>Perez</td>
-                        <td>Lopez</td>
-                        <td>
-                            <button class="btn btn-info btn-sm">Ver</button>
-                        </td>
-                    </tr>
+                    <?php if (!empty($personas)) : ?>
+                        <?php foreach ($personas as $index => $persona) : ?>
+                            <tr>
+                                <td><?= $index + 1 ?></td>
+                                <td><?= htmlspecialchars($persona['idPersona']) ?></td>
+                                <td><?= htmlspecialchars($persona['nombres']) ?></td>
+                                <td><?= htmlspecialchars($persona['primerApellido']) ?></td>
+                                <td><?= htmlspecialchars($persona['segundoApellido']) ?></td>
+                                <td>
+                                    <button class="btn btn-info btn-sm">Ver</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <tr>
+                            <td colspan="6" class="text-center">No hay registros disponibles</td>
+                        </tr>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
+
 
         <footer>
             <p>© 2024 - Sistema de Hoja de Vida. Todos los derechos reservados.</p>

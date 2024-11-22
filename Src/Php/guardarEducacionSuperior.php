@@ -67,7 +67,7 @@ try {
         ':idPersona' => $idPersona,
         ':modalidad' => $_POST['nivel_educativo'],
         ':semestresAprovados' => $_POST['semestres-aprobados'],
-        ':graduado' => $graduado,
+        ':graduado' => $_POST['graduado'],
         ':nombreTitulo' => $_POST['carrera'],
         ':fechaTerminacion' => $_POST['fecha-grado-superior'],
         ':numeroTarjetaProfesional' => $_POST['num_tarjeta_profesional']

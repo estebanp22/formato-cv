@@ -138,10 +138,6 @@ if (isset($_SESSION["idPersona"])) {
                         <label><input type="radio" id="nacionalidad-ext" value="ext" name="nacionalidad">Extranjero</label>
                     </div>
 
-                    <label for="pais">PAÍS</label>
-                    <select class="form-control" name="paisesNacionalidad" id="paisesNacionalidad">
-                        <option value="" disabled selected>Selecciona tu país</option>
-                    </select>
                 </div>
             </div>
 
