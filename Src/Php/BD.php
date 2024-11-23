@@ -4,7 +4,7 @@ $host = "localhost";
 $dbname = "hojadevida";
 $username = "root";
 //$password = "";
-$password = "Esteban.22";
+$password = "200525";
 
 
 try {

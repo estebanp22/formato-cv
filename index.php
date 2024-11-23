@@ -75,7 +75,7 @@ try {
                     <label for="idPersona" class="form-label">Numero de documento:</label>
                     <input type="text" class="form-control" id="idPersona" name="idPersona">
                 </div>
-                <button href="Src/Pages/pagina1.php" type="submit" class="btn btn-success btn-block">Iniciar</button>
+                <button type="submit" class="btn btn-success btn-block">Iniciar</button>
             </form>
         </div>
 

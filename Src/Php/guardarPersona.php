@@ -8,6 +8,11 @@ ini_set('display_errors', 0);
 
 include("../Php/BD.php");
 
+session_start();
+
+// Obtener idPersona desde la sesión
+$idPersona = $_SESSION["idPersona"];
+
 // Inicializar respuesta
 $response = [];
 
@@ -25,7 +30,7 @@ try {
     // Validar que todos los campos requeridos están presentes
     $requiredFields = [
         'primerApellido', 'segundoApellido', 'nombres',
-        'tipoDocumento', 'numeroDocumento', 'genero',
+        'tipoDocumento', 'genero',
         'fechaNacimiento', 'paisNacimiento',
         'departamentoNacimiento', 'municipioNacimiento'
     ];
@@ -65,7 +70,7 @@ try {
         ':segundoApellido' => $_POST['segundoApellido'],
         ':nombres' => $_POST['nombres'],
         ':tipoDocumento' => $_POST['tipoDocumento'],
-        ':numeroDocumento' => $_POST['numeroDocumento'],
+':numeroDocumento' => $idPersona,
         ':genero' => $_POST['genero'],
         ':fechaNacimiento' => $_POST['fechaNacimiento'],
         ':paisNacimiento' => $_POST['paisNacimiento'],

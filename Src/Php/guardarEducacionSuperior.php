@@ -34,7 +34,7 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Validar campos requeridos
-    $requiredFields = ['nivel_educativo', 'semestres-aprobados', 'graduado0', 'carrera', 'fecha-grado-superior', 'num_tarjeta_profesional'];
+    $requiredFields = ['nivel_educativo', 'semestres-aprobados', 'carrera', 'fecha-grado-superior', 'num_tarjeta_profesional'];
     $missingFields = [];
 
     foreach ($requiredFields as $field) {
@@ -67,7 +67,7 @@ try {
         ':idPersona' => $idPersona,
         ':modalidad' => $_POST['nivel_educativo'],
         ':semestresAprovados' => $_POST['semestres-aprobados'],
-        ':graduado' => $_POST['graduado0'],
+        ':graduado' => 0 ,
         ':nombreTitulo' => $_POST['carrera'],
         ':fechaTerminacion' => $_POST['fecha-grado-superior'],
         ':numeroTarjetaProfesional' => $_POST['num_tarjeta_profesional']
